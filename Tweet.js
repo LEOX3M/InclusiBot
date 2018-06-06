@@ -20,16 +20,17 @@ var replaceCharTilde = "é";
 //Keep words. Palabras que no se unisexearan por motivos de entendiento.
 var keepWords = ['tras'];
 
+//Reply start
+var replyStartArray = ['¿Y por qué no decirlo asi? : ', 'Mmm... suena más inclusivo decirlo: ', 'Yo lo diría: ', 'Dígalo asi: ', 'Traducido sin sexismo: ', 'Error 404: ', , 'Error 202: ', , 'Error 200: ', , 'Error 316: ', 'No ofenda, digalo así: ', 'Seamos inclusivos. Digamos: ', 'Mi Detectar Error: '];
+
 // Constructor
-function Tweet(retweeting) {
+function Tweet(reply) {
 	this.originalText;
 	this.screen_name;
 	this.tweetID;
   	this.finalText;
-	this.truncated;
-	this.mediaUrl;
 	this.source; //screen_name
-	this.retweeting = retweeting;
+	this.reply = reply;
 }
 
 
@@ -64,12 +65,6 @@ Tweet.prototype.seleccionarDataRelevante = function(data) {
 	//User del tweet (source)
 	this.screen_name = data[dataLength-1].user.screen_name;
 
-	//Esta truncado el texto?
-	this.truncated = data[dataLength-1].truncated;
-
-	//Tiene Imagen/Video?
-	if(data[dataLength-1].entities.hasOwnProperty("media"))
-  		this.mediaUrl = data[dataLength-1].entities.media[0].media_url;
 };
 
 
@@ -104,21 +99,17 @@ Tweet.prototype.purifyInitialText = function() {
 ** Se aplica la semantica no sexista.
 **************************************************************************/
 Tweet.prototype.generateFinalText = function() {
-	//USAR TEMPORALMENTE
-	this.screen_name = 'AhoraBoticias';
-
-	//var quotedTweet = ' <span class="invisible"><a href="https://twitter.com/'+this.source+'/status/'+this.tweetID+'"></a></span>';
-	var quotedTweet = ' https://twitter.com/'+this.source+'/status/'+this.tweetID;
-	//var quotedTweet = ' ';
-	
-	//util para responder al tweet como traduccion.
-	//var quotedTweet = ' @' + this.source;
 	this.finalText = this.noSexistSemantics(this.finalText);
-	if(this.retweeting)
-		this.finalText =  this.finalText + ' ' + quotedTweet;
-
-		//this.finalText =  'RT @' + this.screen_name + ' '+ this.finalText + ' ' +quotedTweet;
-
+	if(this.reply){
+		//Buscamos inicio
+		var replyStart = randomReplyStart();
+		//generamos el texto final. @sorce es obligatorio. Se agrega replyStart para darle mas vida al bot
+		this.finalText =  '@' + this.source + ' ' + replyStart + this.finalText;
+	}else{
+		
+		var quotedTweet = ' https://twitter.com/'+this.source+'/status/'+this.tweetID;
+		this.finalText = this.finalText + ' ' + quotedTweet;
+	}		
 };
 
 /**************************************************************************
@@ -139,8 +130,8 @@ Tweet.prototype.noSexistSemantics = function(str) {
 };
 
 Tweet.prototype.unisexWord = function(sexedWord) {
-	//Si tiene mas de 3 letras, aplica cambio
-	if(sexedWord.length >= 4){
+	//Si tiene mas de 3 letras y no es un @, aplica cambio
+	if(sexedWord.length >= 4 && sexedWord.indexOf('@') == -1){
 		//Buscamos desde atras de la palabra
 		for(let i = sexedWord.length - 1; i > 0; i--)	{
 			//Si encontramos una vocal, reemplazamos 
@@ -179,6 +170,13 @@ Tweet.prototype.firstIndexOf = function(str, pattern){
 Tweet.prototype.deletePattern = function(str, pattern){
 	return str.replace(pattern," "); 
 };
+
+/**************************************************************************
+** replyStatrRandom: Elimina todo pattern dentro de la palabra. Retorna STRING
+**************************************************************************/
+function randomReplyStart(){
+	return replyStartArray[Math.floor(Math.random() * replyStartArray.length)];
+}
 
 // export the class
 module.exports = Tweet;

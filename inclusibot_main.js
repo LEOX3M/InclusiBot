@@ -85,6 +85,7 @@ function postIt(tweet){
 		if(!err){
 			console.log("Posteado :)");
 		}else{
+			console.log(err);
 			console.log("Retrying :(");
 			tweetIt();
 		}		
@@ -104,6 +105,7 @@ function postReply(tweet){
 			console.log("Reply correcto :)");
 		}else{
 			console.log("Retrying Reply :(");
+			console.log(err);
 			replayIt();
 		}		
 	});

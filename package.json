@@ -1,0 +1,16 @@
+{
+  "name": "inclusibot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "inclusibot_main.js",
+  "scripts": {
+    "start": "node inclusibot_main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^6.0.0",
+    "twit": "^2.2.9"
+  }
+}

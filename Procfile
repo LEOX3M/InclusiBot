@@ -1,0 +1,1 @@
+worker: node inclusibot_main.js

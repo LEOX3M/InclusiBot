@@ -21,7 +21,7 @@ var replaceCharTilde = "é";
 var keepWords = ['tras'];
 
 //Reply start
-var replyStartArray = ['¿Y por qué no decirlo asi? : ', 'Mmm... suena más inclusivo decirlo: ', 'Yo lo diría: ', 'Dígalo asi: ', 'Traducido sin sexismo: ', 'Error 404: ', , 'Error 202: ', , 'Error 200: ', , 'Error 316: ', 'No ofenda, digalo así: ', 'Seamos inclusivos. Digamos: ', 'Mi Detectar Error: '];
+var replyStartArray = ['¿Y por qué no decirlo asi? : ', 'Mmm... suena más inclusivo decirlo: ', 'Yo lo diría: ', 'Dígalo asi: ', 'Traducido sin sexismo: ', 'Error 404: ', 'Error 202: ', 'Error 200: ', 'Error 316: ', 'No ofenda, digalo así: ', 'Seamos inclusivos. Digamos: ', 'Mi Detectar Error: '];
 
 // Constructor
 function Tweet(reply) {
@@ -122,7 +122,7 @@ Tweet.prototype.noSexistSemantics = function(str) {
 
 Tweet.prototype.unisexWord = function(sexedWord) {
 	//Si tiene mas de 3 letras y no es un @, aplica cambio
-	if(sexedWord.length >= 4 && sexedWord.indexOf('@') == -1){
+	if(sexedWord.length >= 4 && sexedWord.indexOf('@') == -1 && sexedWord.indexOf('#') == -1){
 		//Buscamos desde atras de la palabra
 		for(let i = sexedWord.length - 1; i > 0; i--)	{
 			//Si encontramos una vocal, reemplazamos 

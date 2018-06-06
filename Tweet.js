@@ -122,7 +122,7 @@ Tweet.prototype.noSexistSemantics = function(str) {
 
 Tweet.prototype.unisexWord = function(sexedWord) {
 	//Si tiene mas de 3 letras y no es un @, aplica cambio
-	if(sexedWord.length >= 4 && sexedWord.indexOf('@') == -1){
+	if(sexedWord.length >= 4 && sexedWord.indexOf('@') == -1 && sexedWord.indexOf('#') == -1){
 		//Buscamos desde atras de la palabra
 		for(let i = sexedWord.length - 1; i > 0; i--)	{
 			//Si encontramos una vocal, reemplazamos 

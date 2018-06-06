@@ -21,7 +21,7 @@ var replaceCharTilde = "é";
 var keepWords = ['tras'];
 
 //Reply start
-var replyStartArray = ['¿Y por qué no decirlo asi? : ', 'Mmm... suena más inclusivo decirlo: ', 'Yo lo diría: ', 'Dígalo asi: ', 'Traducido sin sexismo: ', 'Error 404: ', , 'Error 202: ', , 'Error 200: ', , 'Error 316: ', 'No ofenda, digalo así: ', 'Seamos inclusivos. Digamos: ', 'Mi Detectar Error: '];
+var replyStartArray = ['¿Y por qué no decirlo asi? : ', 'Mmm... suena más inclusivo decirlo: ', 'Yo lo diría: ', 'Dígalo asi: ', 'Traducido sin sexismo: ', 'Error 404: ', 'Error 202: ', 'Error 200: ', 'Error 316: ', 'No ofenda, digalo así: ', 'Seamos inclusivos. Digamos: ', 'Mi Detectar Error: '];
 
 // Constructor
 function Tweet(reply) {

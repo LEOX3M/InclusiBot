@@ -37,22 +37,26 @@ function tweetIt() {
 	//GET tweet
 	var count = randomCount();
 	T.get('statuses/user_timeline', { screen_name: tweet.source, count: count, tweet_mode: 'extended' }, function (err, data, response) {
-		//Seteo de informacion relevante proveniente del tweet
-		//y creacion del tweet final
-		tweet.createTweetFinal(data);
-		console.log("OTweet: "+tweet.originalText);
-		console.log("FTweet: "+tweet.finalText);
-		
-		//Si el tweet actual resulta ser el mismo que se posteo anteriormente, se busca otro.
-		//Si el tweet final excede el total, se busca otro.
-		if(lastTweetID==tweet.tweetID || tweet.finalText.length > totalCharacters){
-			tweetIt();
-			return;
-		}
-		lastTweetID = tweet.tweetID;
+		if(!err){
+			//Seteo de informacion relevante proveniente del tweet
+			//y creacion del tweet final
+			tweet.createTweetFinal(data);
+			console.log("OTweet: "+tweet.originalText);
+			console.log("FTweet: "+tweet.finalText);
+			
+			//Si el tweet actual resulta ser el mismo que se posteo anteriormente, se busca otro.
+			//Si el tweet final excede el total, se busca otro.
+			if(lastTweetID==tweet.tweetID || tweet.finalText.length > totalCharacters){
+				tweetIt();
+				return;
+			}
+			lastTweetID = tweet.tweetID;
 
-	 	//¡¡¡SEND TWIT!!!
-		 postIt(tweet); 
+			//¡¡¡SEND TWIT!!!
+			postIt(tweet); 
+		}else{
+			console.log(err);
+		}
 	});
 }
 

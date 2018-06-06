@@ -48,11 +48,6 @@ Tweet.prototype.createTweetFinal = function(data){
 **************************************************************************/
 Tweet.prototype.seleccionarDataRelevante = function(data) {
 	var dataLength = data.length;
-
-	console.log("__________________________________");
-	console.log(data[dataLength-1]);
-	console.log("__________________________________");
-
 	//Texto Original
 	this.originalText = data[dataLength-1].full_text;
 
@@ -64,7 +59,6 @@ Tweet.prototype.seleccionarDataRelevante = function(data) {
 	
 	//User del tweet (source)
 	this.screen_name = data[dataLength-1].user.screen_name;
-
 };
 
 
@@ -73,8 +67,6 @@ Tweet.prototype.seleccionarDataRelevante = function(data) {
 ** Elimina links, RT, etc.
 **************************************************************************/
 Tweet.prototype.purifyInitialText = function() {
-
-
 	//Remover emojis si es requerido
   	if(removeEmojis && this.firstIndexOf(this.finalText, pattEmoji) != -1)
   		this.finalText = this.deletePattern(this.finalText, pattEmoji);
@@ -106,7 +98,6 @@ Tweet.prototype.generateFinalText = function() {
 		//generamos el texto final. @sorce es obligatorio. Se agrega replyStart para darle mas vida al bot
 		this.finalText =  '@' + this.source + ' ' + replyStart + this.finalText;
 	}else{
-		
 		var quotedTweet = ' https://twitter.com/'+this.source+'/status/'+this.tweetID;
 		this.finalText = this.finalText + ' ' + quotedTweet;
 	}		
@@ -135,7 +126,6 @@ Tweet.prototype.unisexWord = function(sexedWord) {
 		//Buscamos desde atras de la palabra
 		for(let i = sexedWord.length - 1; i > 0; i--)	{
 			//Si encontramos una vocal, reemplazamos 
-			
 			//Sin tilde
 			if(vowels.indexOf(sexedWord.charAt(i)) >= 0){
 				sexedWord = sexedWord.substring(0, i) +replaceChar + sexedWord.substring(i + 1);

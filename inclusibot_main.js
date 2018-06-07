@@ -13,8 +13,6 @@ var T = new Twit({
 });
 
 //Variables globales
-//var sourcesArray = ['Leo_Arroyo'];
-//var sourcesArray = ['biobio', 'adnradiochile', 'Cooperativa', 'bbcmundo', '24HorasTVN', 'CNNChile', 'latercera', 'elmostrador', 'thecliniccl', 'ahoranoticiasAN', 'DiarioLaHora', 'nacioncl', 'Tele13_Radio', 'lacuarta','ElGraficoChile', 'soychilecl', 'emol', 'CNNEE', 'el_pais', 'sebastianpinera', 'GobiernodeChile', 'ceciperez1', 'ceciliamorel', 'andreschadwickp', 'KarlaEnAccion', 'MarceSabat', 'cmonckeberg', 'nmonckeberg', 'lilyperez', 'joseantoniokast', 'mjossandon', 'aluksicc','mauriciohofmann','bianchileiton','BarackObama','copano','LavinJoaquin','rafaelgumucioa','AlbertoMayol','RinconSalfate','consuelosaav','RicardoLagos','TonkaTP','MarceloRios75','patricionavia','ramirez_polo','kingarturo23','AndresVelasco','MedelPitbull','C1audioBravo','SoledadOnetto','Cumparini','jumastorga','tv_mauricio','matiasdelrio','Orrego', 'gabrielboric', 'GiorgioJackson', 'fernandopaulsen', 'DMatamala', 'lucyanaah', 'AldoDuqueSantos', 'mbachelet', 'AldoDuqueSantos', 'maylwino', 'guillier', 'melnicksergio', 'albertoespina', 'chahuan', 'allamand', 'lcruzcoke', 'felipekast','HernanLarrainF' ,'nonaossandon','Cami_FloresO','PepaHoffmann','ivanmoreirab','gustavohasbun','ErnestoSilvaM','AXELKAISER','catalinaparot','patriciomelero','vanrysselberghe','clarroulet','hdesolminihac','amorenocharme','jschaulsohn','nicolaslarrain','ivanguerrerom','leoromerosaez','DerechaTuitera','rfantuzzih','rubionatural','gblumel','chechohirane','Jovinonovoa','enavonbaer','lgolborne','Pontifex_es','jalessandri'];
 var sourcesArray = process.env.SOURCE_ARRAY.split(' ')
 var totalCharacters = process.env.TWITTER_CHAR_LIMIT;
 var intervalTweetTime = process.env.TWEET_TIME;
